@@ -1,0 +1,24 @@
+.modal-dialog{
+    max-width: 100% !important;
+    padding: .8rem;
+    padding-top: 85px;
+
+}
+.modal-content{
+    width: 100%;
+    background-color: #eff7ff;
+}
+.modal-body{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.modal-content .link{
+    color: #0357a8;
+    font-size: 14px;
+    text-decoration: none;
+}
+.modal-content .link img{
+    width: 30px;
+}

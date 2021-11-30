@@ -1,0 +1,12 @@
+.home{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+.home .content{
+    margin: auto;
+}
+.home .content p{
+    color: #333;
+}

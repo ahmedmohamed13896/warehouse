@@ -1,0 +1,187 @@
+<h4 class="top-title">Product</h4>
+<div class="product-container">
+  <div class="product-box">
+    <div class="product-title d-flex">
+      <i class="fa fa-copy"></i>
+      <h4 class="title">Basic Information</h4>
+    </div>
+    <form [formGroup]="formData">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="warehouse">Warehouse<span>*</span></label>
+            <select formControlName="warehouse" class="form-select form-control" [class.error]="
+                formData.controls.warehouse.errors &&
+                formData.controls.warehouse.touched
+              " (change)="setWarhouse($event)" required id="warehouse" name="warehouse" aria-label="Default select example">
+              <option selected value="{{ null }}">Select Warehouse</option>
+              <option *ngFor="let wh of productData.warhouses" [value]="wh.warhouse.name">
+                {{ wh.warhouse.name }}
+              </option>
+            </select>
+
+            <!-- warehouse error -->
+            <div class="text-danger" *ngIf="
+                formData.controls.warehouse.errors &&
+                formData.controls.warehouse.touched
+              ">
+              <small *ngIf="formData.controls.warehouse.errors['required']">
+                Required
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="type">Type<span>*</span></label>
+            <select formControlName="type" class="form-select form-control" id="type" name="type" [class.error]="
+                formData.controls.type.errors && formData.controls.type.touched
+              " (change)="setCurrentTypes($event)" aria-label="Default select example">
+              <option selected value="{{ null }}">Select UOM Type</option>
+              <option *ngFor="let type of selectedWarhouse?.types" [value]="type?.type">
+                {{ type?.type }}
+              </option>
+            </select>
+            <!-- type error -->
+            <div class="text-danger" *ngIf="
+                formData.controls.type.errors && formData.controls.type.touched
+              ">
+              <small *ngIf="formData.controls.type.errors['required']">
+                Required
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 d-flex align-items-end">
+          <div class="form-group">
+            <div class="form-check">
+              <input formControlName="showZeroBalance" class="form-check-input" type="checkbox" name="showZeroBalance" value="" id="showZeroBalance" />
+              <label class="form-check-label" for="showZeroBalance">
+                Show Zero Balance
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="type">Product classification</label>
+            <div class="
+                d-flex
+                align-items-center
+                justify-content-start justify-content-md-between
+              ">
+              <div class="form-check d-flex align-items-center">
+                <input formControlName="classification" (click)="formData.controls.products.patchValue(productTypes)" class="form-check-input" type="radio" name="classification" id="allProducts" value="allProducts" />
+                <label class="form-check-label ps-2" for="allProducts">
+                  All Product
+                </label>
+              </div>
+              <div class="form-check d-flex align-items-center gx-2 ms-2">
+                <input formControlName="classification" (click)="formData.controls.products.patchValue([])" class="form-check-input" type="radio" name="classification" id="specificProducts" value="specificProducts" />
+                <label class="form-check-label ps-2" for="specificProducts">
+                  Specific Product
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-6" *ngIf="checkIfNotSingle()">
+          <div class="form-group">
+            <label for="type">Product <span>*</span></label>
+            <ng-select formControlName="products" class="form-select form-control" name="products" id="products" [items]="productTypes" [multiple]="true" bindLabel="name" placeholder="Select items" [required]="
+                formData.controls.classification.value == 'specificProducts'
+              " [class.error]="
+                formData.controls.products.errors
+              " [compareWith]="compareFn">
+              <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+                <div class="ng-value" *ngFor="let item of items ? items.slice(0, 2) : []">
+                  <span class="ng-value-label">{{ item.name }}</span>
+                  <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
+                </div>
+                <div class="ng-value" *ngIf="items.length > 2">
+                  <span class="ng-value-label">{{ items.length - 2 }} more...</span>
+                </div>
+              </ng-template>
+            </ng-select>
+
+            <!-- products error -->
+            <div class="text-danger" *ngIf="
+                formData.controls.products.errors
+              ">
+              <small *ngIf="formData.controls.products.errors['required']">
+                Required
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{ formData.value | json }}
+
+      <button class="btn search-btn" (click)="showData()" [disabled]="!formData.valid">
+        Search
+      </button>
+    </form>
+
+    <div class="product-title mb-5 d-flex ">
+      <i class="fa fa-file"></i>
+      <h4 class="title">Products Details</h4>
+    </div>
+
+
+    <div class="product-table mb-4">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col" *ngIf="filteredData.showZeroBalance">On-Hand</th>
+              <th scope="col">Type</th>
+            </tr>
+            <tr>
+              <th scope="col">
+                <div class="table-search">
+                  <input type="search" class="form-control" />
+                  <i class="fa fa-search"></i>
+                </div>
+              </th>
+              <th scope="col" *ngIf="filteredData.showZeroBalance">
+                <div class="table-search">
+                  <input type="search" class="form-control" />
+                  <i class="fa fa-search"></i>
+                </div>
+              </th>
+
+              <th scope="col">
+                <div class="table-search">
+                  <input type="search" class="form-control" />
+                  <i class="fa fa-search"></i>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody *ngIf="filteredData.products?.length">
+            <tr *ngFor="let item of (filteredData.products) | paginate: { itemsPerPage: 2, currentPage: page }">
+              <th scope="row">{{item.name}}</th>
+              <td *ngIf="filteredData.showZeroBalance">{{item.quantity}}</td>
+              <td>{{filteredData.type}}</td>
+            </tr>
+
+          </tbody>
+        </table>
+
+        <!-- shown if there is warehouses selected  -->
+        <div *ngIf="!filteredData.products?.length" class="p-4 m-auto d-flex flex-column align-items-center justify-content-center ">
+          <img src="../../assets/images/noDataFoundGreen.svg" alt="" class="img-fluid mb-2">
+          <p class="text-center">Select Warehouse and Product</p>
+        </div>
+
+        <div *ngIf="filteredData.products?.length">
+          <pagination-controls (pageChange)="page = $event" [maxSize]="5" [directionLinks]="true" [responsive]="true" previousLabel="" nextLabel="" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page"></pagination-controls>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
