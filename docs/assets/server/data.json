@@ -1,0 +1,122 @@
+{
+  "warhouses": [
+    {
+      "id": 1,
+      "warhouse": {
+        "name": "wh1",
+        "types": [
+          {
+            "type": "wh1 type A",
+            "products": [
+              {
+                "name": "type A product 1",
+                "quantity": 45
+              },
+              {
+                "name": "type A product 2",
+                "quantity": 50
+              },
+              {
+                "name": "type A product 3",
+                "quantity": 450
+              }
+            ]
+          },
+          {
+            "type": "wh1 type B",
+            "products": [
+              {
+                "name": "type B product 1",
+                "quantity": 60
+              },
+              {
+                "name": "type B product 2",
+                "quantity": 42
+              },
+              {
+                "name": "type B product 3",
+                "quantity": 260
+              }
+            ]
+          },
+          {
+            "type": "wh1 type C",
+            "products": [
+              {
+                "name": "type C product 1",
+                "quantity": 26
+              },
+              {
+                "name": "type C product 2",
+                "quantity": 700
+              },
+              {
+                "name": "type C product 3",
+                "quantity": 53
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "warhouse": {
+        "name": "wh2",
+        "types": [
+          {
+            "type": "wh2 type A",
+            "products": [
+              {
+                "name": "type A product 1",
+                "quantity": 260
+              },
+              {
+                "name": "type A product 2",
+                "quantity": 260
+              },
+              {
+                "name": "type A product 3",
+                "quantity": 260
+              }
+            ]
+          },
+          {
+            "type": "wh2 type B",
+            "products": [
+              {
+                "name": "type B product 1",
+                "quantity": 260
+              },
+              {
+                "name": "type B product 2",
+                "quantity": 260
+              },
+              {
+                "name": "type B product 3",
+                "quantity": 260
+              }
+            ]
+          },
+          {
+            "type": "wh2 type C",
+            "products": [
+              {
+                "name": "type C product 1",
+                "quantity": 260
+              },
+              {
+                "name": "type C product 2",
+                "quantity": 260
+              },
+              {
+                "name": "type C product 3",
+                "quantity": 260
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
