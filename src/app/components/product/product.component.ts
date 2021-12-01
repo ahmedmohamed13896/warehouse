@@ -23,7 +23,7 @@ export class ProductComponent implements OnInit {
   formData = new FormGroup({
           warehouse : new FormControl({value:'',disabled: false},Validators.required),
           type : new FormControl({value:'',disabled: true},Validators.required),
-          showZeroBalance : new FormControl({value:false,disabled: true}),
+          showZeroBalance : new FormControl({value:true,disabled: true}),
           classification : new FormControl({value:'allProducts',disabled: true},Validators.required),
           products : new FormControl({value:[]},Validators.required),
         });
@@ -33,8 +33,8 @@ export class ProductComponent implements OnInit {
   }
   ngOnInit(): void {
     this._ProductService.getProductData().subscribe({
-      next:(data)=>{
-        this.productData = data
+      next:(data:any)=>{
+        this.productData = data;
       },
       error:(error)=>{
         console.log(error)

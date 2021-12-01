@@ -10,27 +10,27 @@
         <tr>
           <th scope="col">
             <div class="table-search">
-              <input type="search" class="form-control"  />
+              <input type="search" class="form-control" name="productName"  [(ngModel)]="productName"  (keyup)="productName" />
               <i class="fa fa-search"></i>
             </div>
           </th>
-          <th scope="col" *ngIf="filteredData.showZeroBalance">
+          <th scope="col" *ngIf="filteredData.showZeroBalance"  >
             <div class="table-search">
-              <input type="search" class="form-control" />
+              <input type="search" class="form-control" name="quantity"  [(ngModel)]="quantity"  (keyup)="quantity" />
               <i class="fa fa-search"></i>
             </div>
           </th>
 
           <th scope="col">
             <div class="table-search">
-              <input type="search" class="form-control" />
+              <input type="search" class="form-control" name="type"  [(ngModel)]="type"  (keyup)="type" />
               <i class="fa fa-search"></i>
             </div>
           </th>
         </tr>
       </thead>
       <tbody *ngIf="filteredData.products?.length">
-        <tr *ngFor="let item of (filteredData.products) | paginate: { itemsPerPage: 3, currentPage: page }">
+        <tr *ngFor="let item of (filteredData) | filter: {'productName':productName, 'quantity':quantity , 'type': type } | paginate: { itemsPerPage: 3, currentPage: page }">
           <th scope="row">{{item.name}}</th>
           <td *ngIf="filteredData.showZeroBalance">{{item.quantity}}</td>
           <td>{{filteredData.type}}</td>
