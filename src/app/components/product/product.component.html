@@ -13,7 +13,7 @@
             <select formControlName="warehouse" class="form-select form-control" [class.error]="
                 formData.controls.warehouse.errors &&
                 formData.controls.warehouse.touched
-              " (change)="setWarhouse($event)" required id="warehouse" name="warehouse" aria-label="Default select example">
+              " (change)="setWarhouse($event)" required id="warehouse" name="warehouse" aria-label="Default select example" aria-placeholder="Select Warehouse" placeholder="Select Warehouse">
               <option selected value="{{ null }}">Select Warehouse</option>
               <option *ngFor="let wh of productData.warhouses" [value]="wh.warhouse.name">
                 {{ wh.warhouse.name }}
@@ -36,7 +36,9 @@
             <label for="type">Type<span>*</span></label>
             <select formControlName="type" class="form-select form-control" id="type" name="type" [class.error]="
                 formData.controls.type.errors && formData.controls.type.touched
-              " (change)="setCurrentTypes($event)" aria-label="Default select example">
+              " (change)="setCurrentTypes($event)" aria-label="Default select example"
+              aria-placeholder="Select UOM Type" placeholder="Select UOM Type"
+              >
               <option selected value="{{ null }}">Select UOM Type</option>
               <option *ngFor="let type of selectedWarhouse?.types" [value]="type?.type">
                 {{ type?.type }}
@@ -52,8 +54,9 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 d-flex align-items-end">
-          <div class="form-group">
+        <div class="col-md-4 d-flex align-items-start">
+          <div class="form-group mb-0">
+            <label>&nbsp;</label>
             <div class="form-check">
               <input formControlName="showZeroBalance" class="form-check-input" type="checkbox" name="showZeroBalance" value="" id="showZeroBalance" />
               <label class="form-check-label" for="showZeroBalance">
@@ -130,58 +133,9 @@
     </div>
 
 
-    <div class="product-table mb-4">
-      <div class="table-responsive">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Product</th>
-              <th scope="col" *ngIf="filteredData.showZeroBalance">On-Hand</th>
-              <th scope="col">Type</th>
-            </tr>
-            <tr>
-              <th scope="col">
-                <div class="table-search">
-                  <input type="search" class="form-control" />
-                  <i class="fa fa-search"></i>
-                </div>
-              </th>
-              <th scope="col" *ngIf="filteredData.showZeroBalance">
-                <div class="table-search">
-                  <input type="search" class="form-control" />
-                  <i class="fa fa-search"></i>
-                </div>
-              </th>
 
-              <th scope="col">
-                <div class="table-search">
-                  <input type="search" class="form-control" />
-                  <i class="fa fa-search"></i>
-                </div>
-              </th>
-            </tr>
-          </thead>
-          <tbody *ngIf="filteredData.products?.length">
-            <tr *ngFor="let item of (filteredData.products) | paginate: { itemsPerPage: 2, currentPage: page }">
-              <th scope="row">{{item.name}}</th>
-              <td *ngIf="filteredData.showZeroBalance">{{item.quantity}}</td>
-              <td>{{filteredData.type}}</td>
-            </tr>
+    <app-product-table [filteredData]="filteredData"></app-product-table>
 
-          </tbody>
-        </table>
 
-        <!-- shown if there is warehouses selected  -->
-        <div *ngIf="!filteredData.products?.length" class="p-4 m-auto d-flex flex-column align-items-center justify-content-center ">
-          <img src="./assets/images/noDataFoundGreen.svg" alt="" class="img-fluid mb-2">
-          <p class="text-center">Select Warehouse and Product</p>
-        </div>
-
-        <div *ngIf="filteredData.products?.length">
-          <pagination-controls (pageChange)="page = $event" [maxSize]="5" [directionLinks]="true" [responsive]="true" previousLabel="" nextLabel="" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page"></pagination-controls>
-        </div>
-
-      </div>
-    </div>
   </div>
 </div>
