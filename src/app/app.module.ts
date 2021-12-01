@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ProductTableComponent } from './components/product/product-table/product-table.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     HeaderComponent,
     FooterComponent,
     ProfileComponent,
+    ProductTableComponent,
   ],
   imports: [
     BrowserModule,

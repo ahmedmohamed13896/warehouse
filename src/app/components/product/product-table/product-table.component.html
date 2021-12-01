@@ -1,0 +1,53 @@
+<div class="product-table mb-4">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Product</th>
+          <th scope="col" *ngIf="filteredData.showZeroBalance">On-Hand</th>
+          <th scope="col">Type</th>
+        </tr>
+        <tr>
+          <th scope="col">
+            <div class="table-search">
+              <input type="search" class="form-control"  />
+              <i class="fa fa-search"></i>
+            </div>
+          </th>
+          <th scope="col" *ngIf="filteredData.showZeroBalance">
+            <div class="table-search">
+              <input type="search" class="form-control" />
+              <i class="fa fa-search"></i>
+            </div>
+          </th>
+
+          <th scope="col">
+            <div class="table-search">
+              <input type="search" class="form-control" />
+              <i class="fa fa-search"></i>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody *ngIf="filteredData.products?.length">
+        <tr *ngFor="let item of (filteredData.products) | paginate: { itemsPerPage: 3, currentPage: page }">
+          <th scope="row">{{item.name}}</th>
+          <td *ngIf="filteredData.showZeroBalance">{{item.quantity}}</td>
+          <td>{{filteredData.type}}</td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <!-- shown if there is warehouses selected  -->
+    <div *ngIf="!filteredData.products?.length" class="p-4 m-auto d-flex flex-column align-items-center justify-content-center ">
+      <img src="./assets/images/noDataFoundGreen.svg" alt="" class="img-fluid mb-2">
+      <p class="text-center">Select Warehouse and Product</p>
+    </div>
+
+    <div *ngIf="filteredData.products?.length">
+      <pagination-controls (pageChange)="page = $event" [maxSize]="5" [directionLinks]="true" [responsive]="true" previousLabel="" nextLabel="" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page"></pagination-controls>
+    </div>
+
+  </div>
+</div>

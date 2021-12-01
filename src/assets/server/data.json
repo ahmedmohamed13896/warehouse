@@ -117,6 +117,117 @@
           }
         ]
       }
+    },
+
+    {
+      "id": 1,
+      "warhouse": {
+        "name": "wh3",
+        "types": [
+          {
+            "type": "wh3 type A",
+            "products": [
+              {
+                "name": "type A product 1",
+                "quantity": 45
+              },
+              {
+                "name": "type A product 2",
+                "quantity": 50
+              },
+              {
+                "name": "type A product 3",
+                "quantity": 450
+              }
+            ]
+          },
+          {
+            "type": "wh3 type B",
+            "products": [
+              {
+                "name": "type B product 1",
+                "quantity": 60
+              },
+              {
+                "name": "type B product 2",
+                "quantity": 42
+              },
+              {
+                "name": "type B product 3",
+                "quantity": 260
+              }
+            ]
+          },
+          {
+            "type": "wh3 type C",
+            "products": [
+              {
+                "name": "type C product 1",
+                "quantity": 26
+              },
+              {
+                "name": "type C product 2",
+                "quantity": 700
+              },
+              {
+                "name": "type C product 3",
+                "quantity": 53
+              },
+              {
+                "name": "type C product 4",
+                "quantity": 1700
+              },
+              {
+                "name": "type C product 5",
+                "quantity": 550
+              }
+            ]
+          },
+          {
+            "type": "wh3 type D",
+            "products": [
+              {
+                "name": "type D product 1",
+                "quantity": 26
+              },
+              {
+                "name": "type D product 2",
+                "quantity": 700
+              },
+              {
+                "name": "type D product 3",
+                "quantity": 53
+              },
+              {
+                "name": "type D product 4",
+                "quantity": 1700
+              },
+              {
+                "name": "type D product 5",
+                "quantity": 442
+              },
+              {
+                "name": "type D product 6",
+                "quantity": 200
+              },
+              {
+                "name": "type D product 7",
+                "quantity": 353
+              },
+              {
+                "name": "type D product 8",
+                "quantity": 326
+              },
+              {
+                "name": "type D product 9",
+                "quantity": 953
+              }
+            ]
+          }
+        ]
+      }
     }
+
+
   ]
 }
