@@ -1,1 +1,53 @@
-<p>header works!</p>
+<nav class="top-nav navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/home">
+      <img class="img-fluid" src="./assets/images/logo.png" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <form class="d-flex flex-grow-1 search-form">
+        <input class="form-control" type="search" placeholder="Search for Patient (name, code, phone or number)" aria-label="Search">
+        <button class="btn search-btn" type="submit">
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
+      <ul class="navbar-nav align-items-center ms-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown me-2">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{lang}}
+          </a>
+          <ul class="dropdown-menu position-absolute" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" (click)="lang = 'English'">English</a></li>
+            <li><a class="dropdown-item" (click)="lang = 'Arabic'">Arabic</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center" routerLink="/profile">
+            <div class="profile-img me-2">
+              <img class="img-fluid" src="./assets/images/user.png" alt="">
+            </div>
+            <span class="username">
+              Ahmed Mohamed
+            </span>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<div class="top-menu">
+  <button class="btn menu-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <i class="fa fa-th"></i>
+  </button>
+  <button class="btn home-icon">
+    <i class="fa fa-home"></i>
+  </button>
+  <a class="link active" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}"><span>&gt;</span> Home</a>
+  <a class="link" routerLink="/product" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><span>&gt;</span> Product</a>
+
+</div>
